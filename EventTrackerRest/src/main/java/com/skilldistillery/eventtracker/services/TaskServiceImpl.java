@@ -49,9 +49,10 @@ public class TaskServiceImpl implements TaskService {
 	
 	public boolean deleteTask(int id) {
 		boolean deleted = false;
-		
-		
-		
+		if (repo.existsById(id)) {
+			repo.deleteById(id);
+			deleted = true;
+		}
 		return deleted;
 	}
 
