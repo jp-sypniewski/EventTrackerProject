@@ -9,11 +9,12 @@ public interface TaskService {
 	List<Task> getAllTasks();
 
 	Task getTaskById(int id);
-
-	Task updateTask(Task task);
-
+	
 	Task createTask(Task task);
 
+	Task updateTask(int tid, Task task);
+
 	boolean deleteTask(int id);
+
 
 }

@@ -50,7 +50,7 @@ public class TaskController {
 	@PutMapping("tasks/{tid}")
 	public Task updateTask(@PathVariable int tid,
 			@RequestBody Task task) {
-		task = svc.updateTask(task);
+		task = svc.updateTask(tid, task);
 		
 		return task;
 	}
