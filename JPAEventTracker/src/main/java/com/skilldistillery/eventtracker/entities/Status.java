@@ -1,4 +1,4 @@
-package com.skilldistillery.jpaeventtracker.entities;
+package com.skilldistillery.eventtracker.entities;
 
 public enum Status {
 	open, in_progress, abandoned, completed;

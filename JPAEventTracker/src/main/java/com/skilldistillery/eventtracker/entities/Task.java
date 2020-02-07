@@ -1,4 +1,4 @@
-package com.skilldistillery.jpaeventtracker.entities;
+package com.skilldistillery.eventtracker.entities;
 
 import java.time.LocalDateTime;
 
