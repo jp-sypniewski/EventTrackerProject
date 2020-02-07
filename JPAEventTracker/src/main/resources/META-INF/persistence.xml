@@ -11,9 +11,9 @@
     <class>TBD</class>
 
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/TBD?useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=MST" />
-      <property name="javax.persistence.jdbc.user" value="TBD"/>
-      <property name="javax.persistence.jdbc.password" value="TBD" />
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/eventtracker?useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=MST" />
+      <property name="javax.persistence.jdbc.user" value="eventtrackeruser"/>
+      <property name="javax.persistence.jdbc.password" value="etuser" />
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
 
       <property name="hibernate.show_sql" value="false" />

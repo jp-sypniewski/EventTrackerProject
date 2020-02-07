@@ -14,4 +14,6 @@ public interface TaskService {
 
 	Task createTask(Task task);
 
+	boolean deleteTask(int id);
+
 }
