@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,7 +30,7 @@ public class TaskController {
 	}
 	
 	@GetMapping("tasks/{tid}")
-	public Task getSingleTask(@RequestParam int tid) {
+	public Task getSingleTask(@PathVariable int tid) {
 		Task task = svc.getTaskById(tid);
 		if (task != null) {
 			
@@ -47,7 +48,7 @@ public class TaskController {
 	}
 	
 	@PutMapping("tasks/{tid}")
-	public Task updateTask(@RequestParam int tid,
+	public Task updateTask(@PathVariable int tid,
 			@RequestBody Task task) {
 		task = svc.updateTask(task);
 		
@@ -55,7 +56,7 @@ public class TaskController {
 	}
 	
 	@DeleteMapping("tasks/{tid}")
-	public void deleteTask(@RequestParam int tid) {
+	public void deleteTask(@PathVariable int tid) {
 		boolean deleted = svc.deleteTask(tid);
 		if (deleted) {
 			
