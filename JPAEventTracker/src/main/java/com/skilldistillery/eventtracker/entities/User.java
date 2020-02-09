@@ -32,8 +32,8 @@ public class User {
 	private LocalDateTime createdAt;
 	
 	@ManyToOne
-	@JoinColumn(name="group_id")
-	private Group group;
+	@JoinColumn(name="team_id")
+	private Team team;
 	
 	// Constructors
 
@@ -41,14 +41,14 @@ public class User {
 		super();
 	}
 
-	public User(int id, String username, String email, String password, LocalDateTime createdAt, Group group) {
+	public User(int id, String username, String email, String password, LocalDateTime createdAt, Team team) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.email = email;
 		this.password = password;
 		this.createdAt = createdAt;
-		this.group = group;
+		this.team = team;
 	}
 	
 	// Getters/Setters
@@ -93,12 +93,12 @@ public class User {
 		this.createdAt = createdAt;
 	}
 
-	public Group getGroup() {
-		return group;
+	public Team getTeam() {
+		return team;
 	}
 
-	public void setGroup(Group group) {
-		this.group = group;
+	public void setTeam(Team team) {
+		this.team = team;
 	}
 	
 	// toString, hashCode, equals
@@ -116,8 +116,8 @@ public class User {
 		builder.append(password);
 		builder.append(", createdAt=");
 		builder.append(createdAt);
-		builder.append(", group=");
-		builder.append(group);
+		builder.append(", team=");
+		builder.append(team);
 		builder.append("]");
 		return builder.toString();
 	}

@@ -8,9 +8,9 @@
     <provider>org.hibernate.jpa.HibernatePersistenceProvider
     </provider>
     
-    <class>com.skilldistillery.eventtracker.entities.Group</class>
     <class>com.skilldistillery.eventtracker.entities.Status</class>
     <class>com.skilldistillery.eventtracker.entities.Task</class>
+    <class>com.skilldistillery.eventtracker.entities.Team</class>
     <class>com.skilldistillery.eventtracker.entities.User</class>
 
     <properties>

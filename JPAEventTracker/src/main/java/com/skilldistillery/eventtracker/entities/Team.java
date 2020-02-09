@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Group {
+public class Team {
 	
 	// Fields
 	
@@ -19,19 +19,19 @@ public class Group {
 	
 	private String name;
 	
-	@OneToMany(mappedBy="group")
+	@OneToMany(mappedBy="team")
 	private List<Task> tasks;
 	
-	@OneToMany(mappedBy="group")
+	@OneToMany(mappedBy="team")
 	private List<User> users;
 	
 	// Constructors
 
-	public Group() {
+	public Team() {
 		super();
 	}
 
-	public Group(int id, String name, List<Task> tasks, List<User> users) {
+	public Team(int id, String name, List<Task> tasks, List<User> users) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -78,7 +78,7 @@ public class Group {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Group [id=");
+		builder.append("Team [id=");
 		builder.append(id);
 		builder.append(", name=");
 		builder.append(name);
@@ -106,7 +106,7 @@ public class Group {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Group other = (Group) obj;
+		Team other = (Team) obj;
 		if (id != other.id)
 			return false;
 		return true;

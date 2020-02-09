@@ -15,11 +15,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class GroupTests {
+class TeamTests {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Group group;
+	private Team team;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -34,31 +34,31 @@ class GroupTests {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		group = em.find(Group.class, 1);
+		team = em.find(Team.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
-		group = null;
+		team = null;
 		em.close();
 	}
 
-	@DisplayName("testing group mapping entity for name")
+	@DisplayName("testing team mapping entity for name")
 	@Test
 	void test0() {
-		assertEquals("",group.getName());
+		assertEquals("",team.getName());
 	}
 	
-	@DisplayName("testing group mapping entity for user list")
+	@DisplayName("testing team mapping entity for user list")
 	@Test
 	void test1() {
-		assertEquals(0,group.getUsers().size());
+		assertEquals(0,team.getUsers().size());
 	}
 	
-	@DisplayName("testing group mapping entity for task list")
+	@DisplayName("testing team mapping entity for task list")
 	@Test
 	void test2() {
-		assertEquals(0,group.getTasks().size());
+		assertEquals(0,team.getTasks().size());
 	}
 
 

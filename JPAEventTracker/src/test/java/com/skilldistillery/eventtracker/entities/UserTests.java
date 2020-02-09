@@ -61,10 +61,10 @@ class UserTests {
 		assertEquals("", user.getPassword());
 	}
 	
-	@DisplayName("testing user mapping entity for group name")
+	@DisplayName("testing user mapping entity for team name")
 	@Test
 	void test3() {
-		assertEquals("", user.getGroup().getName());
+		assertEquals("", user.getTeam().getName());
 	}
 
 }

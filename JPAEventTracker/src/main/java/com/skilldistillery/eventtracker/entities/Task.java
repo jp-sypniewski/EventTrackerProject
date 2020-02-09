@@ -41,8 +41,8 @@ public class Task {
 	private Status status;
 	
 	@ManyToOne
-	@JoinColumn(name="group_id")
-	private Group group;
+	@JoinColumn(name="team_id")
+	private Team team;
 	
 	// Constructors
 
@@ -51,7 +51,7 @@ public class Task {
 	}
 
 	public Task(int id, String name, LocalDateTime createdAt, LocalDateTime updatedAt, LocalDateTime dueDate,
-			Status status, Group group) {
+			Status status, Team team) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -59,7 +59,7 @@ public class Task {
 		this.updatedAt = updatedAt;
 		this.dueDate = dueDate;
 		this.status = status;
-		this.group = group;
+		this.team = team;
 	}
 	
 	// Getters/Setters
@@ -112,12 +112,12 @@ public class Task {
 		this.status = status;
 	}
 
-	public Group getGroup() {
-		return group;
+	public Team getTeam() {
+		return team;
 	}
 
-	public void setGroup(Group group) {
-		this.group = group;
+	public void setTeam(Team team) {
+		this.team = team;
 	}
 	
 	// toString, hashCode, Equals
@@ -137,8 +137,8 @@ public class Task {
 		builder.append(dueDate);
 		builder.append(", status=");
 		builder.append(status);
-		builder.append(", group=");
-		builder.append(group);
+		builder.append(", team=");
+		builder.append(team);
 		builder.append("]");
 		return builder.toString();
 	}
