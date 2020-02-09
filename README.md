@@ -23,6 +23,7 @@ Tasks are the object maintained in the single table database.  A task has a name
 
 All routes are relative to:
 http://3.12.14.177:8080/EventTracker
+[not yet working]
 
 | Return Type | Route                 | Functionality                  |
 |-------------|-----------------------|--------------------------------|
