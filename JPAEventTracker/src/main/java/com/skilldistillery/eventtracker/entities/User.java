@@ -4,8 +4,6 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,10 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
-public class Task {
+public class User {
 	
 	// Fields
 	
@@ -24,21 +21,15 @@ public class Task {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private String name;
+	private String username;
+	
+	private String email;
+	
+	private String password;
 	
 	@Column(name="created_at")
 	@CreationTimestamp
 	private LocalDateTime createdAt;
-	
-	@Column(name="updated_at")
-	@UpdateTimestamp
-	private LocalDateTime updatedAt;
-	
-	@Column(name = "due_date")
-	private LocalDateTime dueDate;
-	
-	@Enumerated(EnumType.STRING)
-	private Status status;
 	
 	@ManyToOne
 	@JoinColumn(name="group_id")
@@ -46,19 +37,17 @@ public class Task {
 	
 	// Constructors
 
-	public Task() {
+	public User() {
 		super();
 	}
 
-	public Task(int id, String name, LocalDateTime createdAt, LocalDateTime updatedAt, LocalDateTime dueDate,
-			Status status, Group group) {
+	public User(int id, String username, String email, String password, LocalDateTime createdAt, Group group) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.username = username;
+		this.email = email;
+		this.password = password;
 		this.createdAt = createdAt;
-		this.updatedAt = updatedAt;
-		this.dueDate = dueDate;
-		this.status = status;
 		this.group = group;
 	}
 	
@@ -72,12 +61,28 @@ public class Task {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public LocalDateTime getCreatedAt() {
@@ -88,30 +93,6 @@ public class Task {
 		this.createdAt = createdAt;
 	}
 
-	public LocalDateTime getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(LocalDateTime updatedAt) {
-		this.updatedAt = updatedAt;
-	}
-
-	public LocalDateTime getDueDate() {
-		return dueDate;
-	}
-
-	public void setDueDate(LocalDateTime dueDate) {
-		this.dueDate = dueDate;
-	}
-
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
-	}
-
 	public Group getGroup() {
 		return group;
 	}
@@ -120,23 +101,21 @@ public class Task {
 		this.group = group;
 	}
 	
-	// toString, hashCode, Equals
+	// toString, hashCode, equals
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Task [id=");
+		builder.append("User [id=");
 		builder.append(id);
-		builder.append(", name=");
-		builder.append(name);
+		builder.append(", username=");
+		builder.append(username);
+		builder.append(", email=");
+		builder.append(email);
+		builder.append(", password=");
+		builder.append(password);
 		builder.append(", createdAt=");
 		builder.append(createdAt);
-		builder.append(", updatedAt=");
-		builder.append(updatedAt);
-		builder.append(", dueDate=");
-		builder.append(dueDate);
-		builder.append(", status=");
-		builder.append(status);
 		builder.append(", group=");
 		builder.append(group);
 		builder.append("]");
@@ -159,7 +138,7 @@ public class Task {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Task other = (Task) obj;
+		User other = (User) obj;
 		if (id != other.id)
 			return false;
 		return true;
