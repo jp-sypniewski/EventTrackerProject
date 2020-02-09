@@ -31,7 +31,7 @@ http://3.12.14.177:8080/EventTracker
 | `Task`        |`GET api/tasks/{id}`   | Gets one task by id            |
 | `Task`        |`POST api/tasks`       | Creates a new task             |
 | `Task`        |`PUT api/tasks/{id}`   | Replaces an existing task by id|
-| `Void`        |`DELETE api/posts/{id}`| Deletes an existing task by id |
+| `-`        |`DELETE api/posts/{id}`| Deletes an existing task by id |
 
 #### Lessons Learned
 
