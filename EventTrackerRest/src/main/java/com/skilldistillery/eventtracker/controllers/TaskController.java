@@ -32,12 +32,11 @@ public class TaskController {
 	}
 	
 	@GetMapping("tasks/{tid}")
-	public Task getSingleTask(@PathVariable int tid) {
+	public Task getSingleTask(@PathVariable int tid,
+			HttpServletResponse response) {
 		Task task = svc.getTaskById(tid);
-		if (task != null) {
-			
-		} else {
-			
+		if (task == null) {
+			response.setStatus(404);
 		}
 		return task;
 	}
