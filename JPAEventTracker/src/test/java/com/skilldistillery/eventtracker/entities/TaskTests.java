@@ -60,5 +60,11 @@ class TaskTests {
 	void test2() {
 		assertEquals(LocalDateTime.of(2020, 12, 12, 0, 0, 0),task.getDueDate());
 	}
+	
+	@DisplayName("testing category mapping entity for due date")
+	@Test
+	void test3() {
+		assertEquals("teamone",task.getTeam().getName());
+	}
 
 }
