@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS `group` ;
 
 CREATE TABLE IF NOT EXISTS `group` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(1000) NULL,
+  `name` VARCHAR(1000) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -58,9 +58,9 @@ DROP TABLE IF EXISTS `user` ;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(16) NOT NULL,
-  `email` VARCHAR(255) NULL,
+  `email` VARCHAR(255) NOT NULL,
   `password` VARCHAR(32) NOT NULL,
-  `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `group_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_user_group_idx` (`group_id` ASC),
@@ -107,7 +107,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eventtracker`;
-INSERT INTO `user` (`id`, `username`, `email`, `password`, `create_time`, `group_id`) VALUES (1, 'firstuser', 'firstuser@eventtracker.com', 'password', '2020-02-09 01:05:26', 1);
+INSERT INTO `user` (`id`, `username`, `email`, `password`, `created_at`, `group_id`) VALUES (1, 'firstuser', 'firstuser@eventtracker.com', 'password', '2020-02-09 01:05:26', 1);
 
 COMMIT;
 

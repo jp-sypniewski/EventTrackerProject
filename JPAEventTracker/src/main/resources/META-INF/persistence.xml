@@ -8,8 +8,10 @@
     <provider>org.hibernate.jpa.HibernatePersistenceProvider
     </provider>
     
-    <class>com.skilldistillery.eventtracker.entities.Task</class>
+    <class>com.skilldistillery.eventtracker.entities.Group</class>
     <class>com.skilldistillery.eventtracker.entities.Status</class>
+    <class>com.skilldistillery.eventtracker.entities.Task</class>
+    <class>com.skilldistillery.eventtracker.entities.User</class>
 
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/eventtracker?useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=MST" />
