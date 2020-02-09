@@ -86,12 +86,18 @@ public class TaskController {
 	}
 	
 	@DeleteMapping("tasks/{tid}")
-	public void deleteTask(@PathVariable int tid) {
-		boolean deleted = svc.deleteTask(tid);
-		if (deleted) {
-			
-		} else {
-			
+	public void deleteTask(@PathVariable int tid,
+			HttpServletResponse response) {
+		try {
+			boolean deleted = svc.deleteTask(tid);
+			if (deleted) {
+			response.setStatus(204);
+			} else {
+				response.setStatus(404);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.setStatus(400);
 		}
 	}
 
