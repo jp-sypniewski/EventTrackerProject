@@ -63,10 +63,26 @@ public class TaskController {
 	
 	@PutMapping("tasks/{tid}")
 	public Task updateTask(@PathVariable int tid,
-			@RequestBody Task task) {
-		task = svc.updateTask(tid, task);
-		
-		return task;
+			@RequestBody Task task,
+			HttpServletResponse response,
+			HttpServletRequest request) {
+		try {
+			Task updatedTask = svc.updateTask(tid, task);
+			if (updatedTask == null) {
+				response.setStatus(400);
+				return updatedTask;
+			}
+			response.setStatus(201);
+			StringBuffer url = request.getRequestURL();
+			url.append("/")
+				.append(updatedTask.getId());
+			response.setHeader("Location", url.toString());
+			return updatedTask;
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.setStatus(400);
+			return null;
+		}
 	}
 	
 	@DeleteMapping("tasks/{tid}")
