@@ -46,19 +46,21 @@ class TeamTests {
 	@DisplayName("testing team mapping entity for name")
 	@Test
 	void test0() {
-		assertEquals("",team.getName());
+		assertEquals("teamone",team.getName());
 	}
 	
 	@DisplayName("testing team mapping entity for user list")
 	@Test
 	void test1() {
-		assertEquals(0,team.getUsers().size());
+		assertEquals(1,team.getUsers().size());
+		assertEquals("firstuser", team.getUsers().get(0).getUsername());
 	}
 	
 	@DisplayName("testing team mapping entity for task list")
 	@Test
 	void test2() {
-		assertEquals(0,team.getTasks().size());
+		assertEquals(2,team.getTasks().size());
+		assertEquals("homework", team.getTasks().get(0).getName());
 	}
 
 
