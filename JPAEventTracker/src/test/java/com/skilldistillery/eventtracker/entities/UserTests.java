@@ -46,7 +46,7 @@ class UserTests {
 	@DisplayName("testing user mapping entity for username")
 	@Test
 	void test0() {
-		assertEquals("",user.getUsername());
+		assertEquals("firstuser",user.getUsername());
 	}
 	
 	@DisplayName("testing user mapping entity for email")

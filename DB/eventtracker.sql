@@ -16,13 +16,13 @@ CREATE SCHEMA IF NOT EXISTS `eventtracker` DEFAULT CHARACTER SET utf8 ;
 USE `eventtracker` ;
 
 -- -----------------------------------------------------
--- Table `group`
+-- Table `team`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `group` ;
+DROP TABLE IF EXISTS `team` ;
 
-CREATE TABLE IF NOT EXISTS `group` (
+CREATE TABLE IF NOT EXISTS `team` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(1000) NOT NULL,
+  `name` VARCHAR(1000) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -39,12 +39,12 @@ CREATE TABLE IF NOT EXISTS `task` (
   `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status` ENUM('open', 'in_progress', 'completed', 'abandoned') NOT NULL DEFAULT 'open',
   `due_date` DATETIME NOT NULL,
-  `group_id` INT NOT NULL,
+  `team_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_task_group1_idx` (`group_id` ASC),
-  CONSTRAINT `fk_task_group1`
-    FOREIGN KEY (`group_id`)
-    REFERENCES `group` (`id`)
+  INDEX `fk_task_team1_idx` (`team_id` ASC),
+  CONSTRAINT `fk_task_team1`
+    FOREIGN KEY (`team_id`)
+    REFERENCES `team` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -61,12 +61,12 @@ CREATE TABLE IF NOT EXISTS `user` (
   `email` VARCHAR(255) NOT NULL,
   `password` VARCHAR(32) NOT NULL,
   `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `group_id` INT NOT NULL,
+  `team_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_user_group_idx` (`group_id` ASC),
-  CONSTRAINT `fk_user_group`
-    FOREIGN KEY (`group_id`)
-    REFERENCES `group` (`id`)
+  INDEX `fk_user_team_idx` (`team_id` ASC),
+  CONSTRAINT `fk_user_team`
+    FOREIGN KEY (`team_id`)
+    REFERENCES `team` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
@@ -82,11 +82,11 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
--- Data for table `group`
+-- Data for table `team`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eventtracker`;
-INSERT INTO `group` (`id`, `name`) VALUES (1, 'teamone');
+INSERT INTO `team` (`id`, `name`) VALUES (1, 'teamone');
 
 COMMIT;
 
@@ -96,8 +96,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eventtracker`;
-INSERT INTO `task` (`id`, `name`, `created_at`, `updated_at`, `status`, `due_date`, `group_id`) VALUES (1, 'homework', '2020-01-01 00:00:00', '2020-01-01 00:00:00', 'open', '2020-12-12 00:00:00', 1);
-INSERT INTO `task` (`id`, `name`, `created_at`, `updated_at`, `status`, `due_date`, `group_id`) VALUES (2, 'some to do', '2020-02-01 12:34:56', '2020-02-08 12:56:31', 'open', '2020-03-01 09:00:00', 1);
+INSERT INTO `task` (`id`, `name`, `created_at`, `updated_at`, `status`, `due_date`, `team_id`) VALUES (1, 'homework', '2020-01-01 00:00:00', '2020-01-01 00:00:00', 'open', '2020-12-12 00:00:00', 1);
+INSERT INTO `task` (`id`, `name`, `created_at`, `updated_at`, `status`, `due_date`, `team_id`) VALUES (2, 'some to do', '2020-02-01 12:34:56', '2020-02-08 12:56:31', 'open', '2020-03-01 09:00:00', 1);
 
 COMMIT;
 
@@ -107,7 +107,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eventtracker`;
-INSERT INTO `user` (`id`, `username`, `email`, `password`, `created_at`, `group_id`) VALUES (1, 'firstuser', 'firstuser@eventtracker.com', 'password', '2020-02-09 01:05:26', 1);
+INSERT INTO `user` (`id`, `username`, `email`, `password`, `created_at`, `team_id`) VALUES (1, 'firstuser', 'firstuser@eventtracker.com', 'password', '2020-02-09 01:05:26', 1);
 
 COMMIT;
 
