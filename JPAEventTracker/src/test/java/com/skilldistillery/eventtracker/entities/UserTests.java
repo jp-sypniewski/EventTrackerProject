@@ -52,19 +52,19 @@ class UserTests {
 	@DisplayName("testing user mapping entity for email")
 	@Test
 	void test1() {
-		assertEquals("", user.getEmail());
+		assertEquals("firstuser@eventtracker.com", user.getEmail());
 	}
 	
 	@DisplayName("testing user mapping entity for password")
 	@Test
 	void test2() {
-		assertEquals("", user.getPassword());
+		assertEquals("password", user.getPassword());
 	}
 	
 	@DisplayName("testing user mapping entity for team name")
 	@Test
 	void test3() {
-		assertEquals("", user.getTeam().getName());
+		assertEquals("teamone", user.getTeam().getName());
 	}
 
 }
