@@ -32,6 +32,11 @@ http://3.12.14.177:8080/EventTracker
 | `Task`        |`POST api/teams/{teamId}/tasks`           | Creates a new task for a team                 |
 | `Task`        |`PUT api/teams/{teamId}/tasks/{taskId}`   | Replaces an existing task by id, needs team id|
 | `-`           |`DELETE api/teams/{teamId}/posts/{taskId}`| Deletes an existing task by id, needs team id |
+|-------------|-----------------------|--------------------------------|
+| `List<Team>`  |`GET api/teams`                           | Gets all tasks for a team                     |
+| `Team`        |`GET api/teams/{teamId}`                  | Gets one task by id, needs team id            |
+| `Team`        |`POST api/teams`                          | Creates a new task for a team                 |
+| `Team`        |`PUT api/teams/{teamId}`                  | Replaces an existing task by id, needs team id|
 
 #### Lessons Learned
 
