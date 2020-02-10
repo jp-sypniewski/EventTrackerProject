@@ -27,11 +27,11 @@ http://3.12.14.177:8080/EventTracker
 
 | Return Type | Route                 | Functionality                  |
 |-------------|-----------------------|--------------------------------|
-| `List<Task>`  |`GET api/tasks`        | Gets all tasks                 |
-| `Task`        |`GET api/tasks/{id}`   | Gets one task by id            |
-| `Task`        |`POST api/tasks`       | Creates a new task             |
-| `Task`        |`PUT api/tasks/{id}`   | Replaces an existing task by id|
-| `-`           |`DELETE api/posts/{id}`| Deletes an existing task by id |
+| `List<Task>`  |`GET api/teams/{teamId}/tasks`            | Gets all tasks for a team                     |
+| `Task`        |`GET api/teams/{teamId}/tasks/{taskId}`   | Gets one task by id, needs team id            |
+| `Task`        |`POST api/teams/{teamId}/tasks`           | Creates a new task for a team                 |
+| `Task`        |`PUT api/teams/{teamId}/tasks/{taskId}`   | Replaces an existing task by id, needs team id|
+| `-`           |`DELETE api/teams/{teamId}/posts/{taskId}`| Deletes an existing task by id, needs team id |
 
 #### Lessons Learned
 
