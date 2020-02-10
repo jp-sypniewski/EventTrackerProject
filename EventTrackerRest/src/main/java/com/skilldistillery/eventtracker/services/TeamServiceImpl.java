@@ -44,6 +44,7 @@ public class TeamServiceImpl implements TeamService {
 		if (opt.isPresent()) {
 			updatedTeam = opt.get();
 			updatedTeam.setName(team.getName());
+			repo.saveAndFlush(updatedTeam);
 		}
 		return updatedTeam;
 	}
