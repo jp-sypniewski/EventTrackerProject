@@ -6,7 +6,7 @@
 
 This project consists of a JPA Project and custom MySQL database paired with a Spring Boot app to publish a REST API.
 
-Tasks are the object maintained in the single table database.  A task has a name and a status (enum), with a due date.  The database also tracks creation and updates of each task object.
+The database includes tables for tasks, users, and teams.  The main object, a task, has a name, a status (enum), a due date, and a team.  The database also tracks creation and updates of each task object.  A team object has a list of tasks and a list of users.  A user has a team, and the typical username, email, and password.
 
 #### Concepts/Technologies Used
 
@@ -14,10 +14,10 @@ Tasks are the object maintained in the single table database.  A task has a name
 - Postman route testing
 - Spring Boot
 - JPA, Spring Data JPA
-- JUnit testing
+- JUnit JPA entity testing
 - MySQL
 - AWS EC2, Tomcat
-- dependency management (Gradle)
+- Dependency management (Gradle)
 
 #### Routes
 
