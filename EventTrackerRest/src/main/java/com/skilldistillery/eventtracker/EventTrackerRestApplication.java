@@ -14,7 +14,7 @@ public class EventTrackerRestApplication extends SpringBootServletInitializer {
 	
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-	  return application.sources(EventTrackerRestApplication.class);
+		return application.sources(EventTrackerRestApplication.class);
 	}
 
 }
