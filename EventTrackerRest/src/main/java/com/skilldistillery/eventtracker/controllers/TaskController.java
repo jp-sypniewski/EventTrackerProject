@@ -25,28 +25,30 @@ public class TaskController {
 	@Autowired
 	private TaskService svc;
 	
-	@GetMapping("tasks")
-	public List<Task> getAllTasks(){
-		List<Task> tasks = svc.getAllTasks();
+	@GetMapping("teams/{teamId}/tasks")
+	public List<Task> getAllTasksByTeam(@PathVariable Integer teamId) {
+		List<Task> tasks = svc.getAllTasksByTeam(teamId);
 		return tasks;
 	}
 	
-	@GetMapping("tasks/{tid}")
-	public Task getSingleTask(@PathVariable int tid,
+	@GetMapping("teams/{teamId}/tasks/{taskId}")
+	public Task getSingleTask(@PathVariable int teamId,
+			@PathVariable int taskId,
 			HttpServletResponse response) {
-		Task task = svc.getTaskById(tid);
+		Task task = svc.getTaskById(teamId, taskId);
 		if (task == null) {
 			response.setStatus(404);
 		}
 		return task;
 	}
 	
-	@PostMapping("tasks")
-	public Task addTask(@RequestBody Task task,
+	@PostMapping("teams/{teamId}/tasks")
+	public Task addTask(@PathVariable int teamId,
+			@RequestBody Task task,
 			HttpServletResponse response,
 			HttpServletRequest request) {
 		try {
-			Task addedTask = svc.createTask(task);
+			Task addedTask = svc.createTask(teamId, task);
 			response.setStatus(201);
 			StringBuffer url = request.getRequestURL();
 			url.append("/")

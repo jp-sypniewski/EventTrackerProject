@@ -6,15 +6,18 @@ import com.skilldistillery.eventtracker.entities.Task;
 
 public interface TaskService {
 
-	List<Task> getAllTasks();
+	List<Task> getAllTasksByTeam(int teamId);
 
-	Task getTaskById(int id);
+	Task getTaskById(int teamId, int taskId);
 	
-	Task createTask(Task task);
+	Task createTask(int teamId, Task task);
 
 	Task updateTask(int tid, Task task);
 
 	boolean deleteTask(int id);
+
+
+
 
 
 }
