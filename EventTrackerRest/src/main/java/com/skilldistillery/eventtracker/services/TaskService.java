@@ -12,9 +12,10 @@ public interface TaskService {
 	
 	Task createTask(int teamId, Task task);
 
-	Task updateTask(int tid, Task task);
+	Task updateTask(int teamId, int taskId, Task task);
 
-	boolean deleteTask(int id);
+	boolean deleteTask(int teamId, int taskId);
+
 
 
 

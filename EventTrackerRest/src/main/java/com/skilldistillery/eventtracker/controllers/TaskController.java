@@ -62,13 +62,14 @@ public class TaskController {
 		}
 	}
 	
-	@PutMapping("tasks/{tid}")
-	public Task updateTask(@PathVariable int tid,
+	@PutMapping("teams/{teamId}/tasks/{taskId}")
+	public Task updateTask(@PathVariable int teamId, 
+			@PathVariable int taskId,
 			@RequestBody Task task,
 			HttpServletResponse response,
 			HttpServletRequest request) {
 		try {
-			Task updatedTask = svc.updateTask(tid, task);
+			Task updatedTask = svc.updateTask(teamId, taskId, task);
 			if (updatedTask == null) {
 				response.setStatus(400);
 				return updatedTask;
@@ -86,11 +87,12 @@ public class TaskController {
 		}
 	}
 	
-	@DeleteMapping("tasks/{tid}")
-	public void deleteTask(@PathVariable int tid,
+	@DeleteMapping("teams/{teamId}/tasks/{taskId}")
+	public void deleteTask(@PathVariable int teamId, 
+			@PathVariable int taskId,
 			HttpServletResponse response) {
 		try {
-			boolean deleted = svc.deleteTask(tid);
+			boolean deleted = svc.deleteTask(teamId, taskId);
 			if (deleted) {
 			response.setStatus(204);
 			} else {
