@@ -22,8 +22,7 @@ The database includes tables for tasks, users, and teams.  The main object, a ta
 #### Routes
 
 All routes are relative to:
-http://3.12.14.177:8080/EventTracker
-[not yet working]
+http://3.12.14.177:8080/EventTrackerREST/
 
 | Return Type | Route                 | Functionality                  |
 |-------------|-----------------------|--------------------------------|
