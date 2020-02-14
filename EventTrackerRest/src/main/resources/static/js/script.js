@@ -16,7 +16,7 @@ var loadDetailView = function(e){
 			var data = JSON.parse(xhr.responseText);
 			
   			var taskName = document.createElement('h3');
-  			taskName.textContent = data.name;
+  			taskName.textContent = "Task: " + data.name;
   			initDiv.appendChild(taskName);
   			
   			var taskStatus = document.createElement('h5');
@@ -26,17 +26,67 @@ var loadDetailView = function(e){
   			var rowDue = document.createElement('p');
   			rowDue.textContent = "Due: " + data.dueDate;
   			initDiv.appendChild(rowDue);
-			console.log(data);
-		}
+  			
+  			var horRule = document.createElement('hr');
+  			initDiv.appendChild(horRule);
 
+  			
+  			
+			var formForEditDelete = document.createElement('form');
+			
+			var formTaskName = document.createElement('input');
+			formTaskName.setAttribute('type', 'text');
+			formTaskName.setAttribute('name', 'name');
+			formForEditDelete.appendChild(formTaskName);
+			var formTaskStatus = document.createElement('select');
+			formTaskStatus.setAttribute('name', 'status');
+			var optionOpen = document.createElement('option');
+			optionOpen.setAttribute('value', 'open');
+			optionOpen.textContent='Open';
+			formTaskStatus.appendChild(optionOpen);
+			var optionInProgress = document.createElement('option');
+			optionInProgress.setAttribute('value', 'in_progress');
+			optionInProgress.textContent='In Progress';
+			formTaskStatus.appendChild(optionInProgress);
+			var optionCompleted = document.createElement('option');
+			optionCompleted.setAttribute('value', 'completed');
+			optionCompleted.textContent='Completed';
+			formTaskStatus.appendChild(optionCompleted);
+			var optionAbandoned = document.createElement('option');
+			optionAbandoned.setAttribute('value', 'abandoned');
+			optionAbandoned.textContent='Abandoned';
+			formTaskStatus.appendChild(optionAbandoned);
+			formForEditDelete.appendChild(formTaskStatus);			
+			var formTaskDueDate = document.createElement('input');
+			formTaskDueDate.setAttribute('type', 'datetime-local');
+			formTaskDueDate.setAttribute('name', 'dueDate');
+			formForEditDelete.appendChild(formTaskDueDate);			
+
+			
+			var submitChangesButton = document.createElement('button');
+			submitChangesButton.textContent = "Submit changes";
+			formForEditDelete.appendChild(submitChangesButton);
+			
+//			add event listener to run PUT
+			
+  			var deleteButton = document.createElement('button');
+  			deleteButton.textContent = "Delete " + data.name;
+  			formForEditDelete.appendChild(deleteButton);
+  			
+//  		add event listener to run DELETE
+  			
+  			initDiv.appendChild(formForEditDelete);
+
+  			
+  			
+  			
+  			
+		}
 		if (xhr.readyState === 4 && xhr.status >= 400) {
 			console.error(xhr.status + ': ' + xhr.responseText);
 		}
 	};
-
 	xhr.send(null);
-	
-	
 };
 
 var loadAllTasks = function(){
@@ -108,6 +158,10 @@ var loadAllTasks = function(){
   xhr.send(null);
   
 };
+
+
+
+
 
 window.addEventListener('load', loadAllTasks);
 
