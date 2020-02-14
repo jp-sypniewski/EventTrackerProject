@@ -59,14 +59,42 @@ window.addEventListener('load', function(){
   };
   xhr.send(null);
   
-
-  
-  
 });
 
-var myForm = document.getElementById("myForm");
 
 
-console.log(myForm);
+document.taskForm.submit.addEventListener('click', function(e){
+	e.preventDefault();
+	var formReturn = e.target.parentElement;
+	var taskObject = {
+		name: formReturn.name.value,
+		dueDate: formReturn.dueDate.value
+	};
+	var taskObjectJson = JSON.stringify(taskObject);
+	
+	
+	
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', 'api/teams/1/tasks', true);
+
+	xhr.setRequestHeader("Content-type", "application/json");
+	
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4 ) {
+			if ( xhr.status == 200 || xhr.status == 201 ) { // Ok or Created
+				var data = JSON.parse(xhr.responseText);
+				console.log(data);
+		    }
+		    else {
+		    	console.log("POST request failed.");
+		    	console.error(xhr.status + ': ' + xhr.responseText);
+		    }
+		}
+	};
+	xhr.send(taskObjectJson);
+	
+});
+
+
 
 
