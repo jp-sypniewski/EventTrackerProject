@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.eventtracker.entities.Status;
 import com.skilldistillery.eventtracker.entities.Task;
 import com.skilldistillery.eventtracker.entities.Team;
 import com.skilldistillery.eventtracker.repositories.TaskRepository;
@@ -44,6 +45,9 @@ public class TaskServiceImpl implements TaskService {
 		Optional<Team> opt = tRepo.findById(teamId);
 		if (opt.isPresent()) {
 			task.setTeam(opt.get());
+			if (task.getStatus() == null) {
+				task.setStatus(Status.open);
+			}
 			newTask = repo.saveAndFlush(task);
 		}
 		return newTask;
