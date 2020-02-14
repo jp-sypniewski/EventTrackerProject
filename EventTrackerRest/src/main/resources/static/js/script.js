@@ -1,3 +1,44 @@
+var loadDetailView = function(e){
+	var id = this.getAttribute("id");
+//	this is the same as is loadAllTasks(), should refactor out
+	var initDiv = document.getElementById('init');
+	while (initDiv.firstElementChild){
+		initDiv.removeChild(initDiv.firstElementChild);
+	}
+	
+	var apiCallString = 'api/teams/1/tasks/' + id ;
+	var xhr = new XMLHttpRequest();
+
+	xhr.open('GET', apiCallString, true);
+
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4 && xhr.status < 400) {
+			var data = JSON.parse(xhr.responseText);
+			
+  			var taskName = document.createElement('h3');
+  			taskName.textContent = data.name;
+  			initDiv.appendChild(taskName);
+  			
+  			var taskStatus = document.createElement('h5');
+  			taskStatus.textContent = "Status: " + data.status;
+  			initDiv.appendChild(taskStatus)
+  			
+  			var rowDue = document.createElement('p');
+  			rowDue.textContent = "Due: " + data.dueDate;
+  			initDiv.appendChild(rowDue);
+			console.log(data);
+		}
+
+		if (xhr.readyState === 4 && xhr.status >= 400) {
+			console.error(xhr.status + ': ' + xhr.responseText);
+		}
+	};
+
+	xhr.send(null);
+	
+	
+};
+
 var loadAllTasks = function(){
 	var initDiv = document.getElementById('init');
 	while (initDiv.firstElementChild){
@@ -14,7 +55,6 @@ var loadAllTasks = function(){
   		// get dedicated <div> for tasks
 
   		var table = document.createElement('table');
-  		
   		var tableHead = document.createElement('thead');
   		var headRow = document.createElement('tr');
   		
@@ -39,6 +79,8 @@ var loadAllTasks = function(){
   		for (let i = 0; i < data.length; i++){
   			// create <tr> for each task with <td> for data
   			var tableRow = document.createElement('tr');
+  			tableRow.setAttribute("id", data[i].id);
+  			tableRow.addEventListener('click', loadDetailView);
   			
   			var rowName = document.createElement('td');
   			rowName.textContent = data[i].name;
