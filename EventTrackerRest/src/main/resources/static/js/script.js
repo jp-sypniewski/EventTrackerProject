@@ -1,16 +1,18 @@
-window.addEventListener('load', loadAllTasks);
-		
-		
-		
 var loadAllTasks = function(){
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'api/teams/1/tasks', true);
-  xhr.onreadystatechange = function() {
+	var initDiv = document.getElementById('init');
+	while (initDiv.firstElementChild){
+		initDiv.removeChild(initDiv.firstElementChild);
+	}
+
+	
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', 'api/teams/1/tasks', true);
+	xhr.onreadystatechange = function() {
 //	  api returns good
   	if (xhr.readyState === 4 && xhr.status < 400) {
   		var data = JSON.parse(xhr.responseText);
   		// get dedicated <div> for tasks
-  		var initDiv = document.getElementById('init');
+
   		var table = document.createElement('table');
   		
   		var tableHead = document.createElement('thead');
@@ -65,7 +67,7 @@ var loadAllTasks = function(){
   
 };
 
-
+window.addEventListener('load', loadAllTasks);
 
 document.taskForm.submit.addEventListener('click', function(e){
 	e.preventDefault();
