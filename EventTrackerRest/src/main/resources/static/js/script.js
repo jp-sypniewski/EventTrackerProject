@@ -13,10 +13,19 @@ window.addEventListener('load', function(){
   		var headRow = document.createElement('tr');
   		
   		var headName = document.createElement('th');
-  		headName.textContent = "NAME";
+  		headName.textContent = "TASK";
   		headRow.appendChild(headName);
   		
+  		var headStatus = document.createElement('th');
+  		headStatus.textContent = "STATUS";
+  		headRow.appendChild(headStatus);
   		
+  		var headDueDate = document.createElement('th');
+  		headDueDate.textContent = "DUE DATE";
+  		headRow.appendChild(headDueDate);
+  		
+  		tableHead.appendChild(headRow);
+  		table.appendChild(tableHead);
   		
   		
   		var tableBody = document.createElement('tbody');
@@ -49,5 +58,15 @@ window.addEventListener('load', function(){
   	}	
   };
   xhr.send(null);
+  
+
+  
+  
 });
+
+var myForm = document.getElementById("myForm");
+
+
+console.log(myForm);
+
 
