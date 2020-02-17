@@ -83,6 +83,21 @@ var loadDetailView = function(e){
 			optionAbandoned.setAttribute('value', 'abandoned');
 			optionAbandoned.textContent='Abandoned';
 			formTaskStatus.appendChild(optionAbandoned);
+			
+  			if (data.status == 'open'){
+  				formTaskStatus.selectedIndex = "0";
+  			}
+  			if (data.status == 'in_progress'){
+  				formTaskStatus.selectedIndex = "1";
+  			}
+  			if (data.status == 'completed'){
+  				formTaskStatus.selectedIndex = "2";
+  			}
+  			if (data.status == 'abandoned'){
+  				formTaskStatus.selectedIndex = "3";
+  			}
+			
+			
 			formForEditDelete.appendChild(formTaskStatus);
 			
 			var aBreak = document.createElement('br');
