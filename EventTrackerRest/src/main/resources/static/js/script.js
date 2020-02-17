@@ -51,6 +51,7 @@ var loadDetailView = function(e){
 			var formTaskName = document.createElement('input');
 			formTaskName.setAttribute('type', 'text');
 			formTaskName.setAttribute('name', 'name');
+			formTaskName.value = data.name;
 			formForEditDelete.appendChild(formTaskName);
 			
 			var aBreak = document.createElement('br');
@@ -132,15 +133,31 @@ var loadDetailView = function(e){
 };
 
 
+var updateTask = function(e){
+	
+};
+
 var deleteTask = function(e){
 	e.preventDefault();
-	var id = e.target.parentElement.firstElementChild.getAttribute('id');
-	console.log(e.target);
-	console.log(id);
-	setTimeout(function(){ alert("Hello"); }, 3000);
+	var id = e.target.parentElement.firstElementChild.getAttribute('id');	
 	
-	
+	var xhr = new XMLHttpRequest();
+	xhr.open('DELETE', 'api/teams/1/tasks/' + id, true);
 
+	xhr.setRequestHeader("Content-type", "application/json");
+	
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4 ) {
+			if ( xhr.status == 200 || xhr.status == 204 ) { // Ok or No content
+				loadAllTasks();
+		    }
+		    else {
+		    	console.log("DELETE request failed.");
+		    	console.error(xhr.status + ': ' + xhr.responseText);
+		    }
+		}
+	};
+	xhr.send(null);
 };
 
 
