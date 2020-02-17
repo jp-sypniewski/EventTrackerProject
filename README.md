@@ -8,7 +8,7 @@ This project consists of a JPA Project and custom MySQL database paired with a S
 
 The database includes tables for tasks, users, and teams.  The main object, a task, has a name, a status (enum), a due date, and a team.  The database also tracks creation and updates of each task object.  A team object has a list of tasks and a list of users.  A user has a team, and the typical username, email, and password.
 
-The Javascript front end displays information about all tasks for team 1.  The count of task completion status is displayed immediately below, followed by a form to add a new task to team 1.  By clicking on a task/row within the initial display table, the detail view of a single task is shown, accompanied by a form to update the task or delete the task.
+The Javascript front end displays information about all tasks for team 1.  The count of task completion status is displayed immediately below, followed by a form to add a new task to team 1.  By clicking on a task/row within the initial display table, the detail view of a single task is shown, accompanied by a form to update the task or delete the task.  The front end loaded to EC2 can accessed at: http://3.12.14.177:8080/EventTrackerREST/
 
 #### Concepts/Technologies Used
 
