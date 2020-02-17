@@ -250,6 +250,59 @@ var loadAllTasks = function(){
   		}
   		table.appendChild(tableBody);
   		initDiv.appendChild(table);
+  		
+		var aHorizontalRule = document.createElement('hr');
+		initDiv.appendChild(aHorizontalRule);
+		
+	  	var taskTrackerTable = document.createElement('table');
+  		var trackerTableHead = document.createElement('thead');
+  		var trackerHeadRow = document.createElement('tr');
+  		
+  		var trackerHeadOpen = document.createElement('th');
+  		trackerHeadOpen.textContent = "OPEN";
+  		trackerHeadRow.appendChild(trackerHeadOpen);
+  		
+  		var trackerHeadInProgress = document.createElement('th');
+  		trackerHeadInProgress.textContent = "IN PROGRESS";
+  		trackerHeadRow.appendChild(trackerHeadInProgress);
+  		
+  		var trackerHeadCompleted = document.createElement('th');
+  		trackerHeadCompleted.textContent = "COMPLETED";
+  		trackerHeadRow.appendChild(trackerHeadCompleted);
+  		
+  		var trackerHeadAbandoned = document.createElement('th');
+  		trackerHeadAbandoned.textContent = "ABANDONED";
+  		trackerHeadRow.appendChild(trackerHeadAbandoned);
+  		
+  		trackerTableHead.appendChild(trackerHeadRow);
+  		taskTrackerTable.appendChild(trackerTableHead);
+  		
+  		
+  		var trackerTableBody = document.createElement('tbody');
+  		var trackerBodyRow = document.createElement('tr');
+  		
+  		var trackerBodyOpen = document.createElement('td');
+  		trackerBodyOpen.textContent = "one";
+  		trackerBodyRow.appendChild(trackerBodyOpen);
+  		
+  		var trackerBodyInProgress = document.createElement('td');
+  		trackerBodyInProgress.textContent = "ten";
+  		trackerBodyRow.appendChild(trackerBodyInProgress);
+  		
+  		var trackerBodyCompleted = document.createElement('td');
+  		trackerBodyCompleted.textContent = "eight";
+  		trackerBodyRow.appendChild(trackerBodyCompleted);
+  		
+  		var trackerBodyAbandoned = document.createElement('td');
+  		trackerBodyAbandoned.textContent = "zero";
+  		trackerBodyRow.appendChild(trackerBodyAbandoned);
+  		
+  		trackerTableBody.appendChild(trackerBodyRow);
+  		taskTrackerTable.appendChild(trackerTableBody);
+  		
+  		initDiv.appendChild(taskTrackerTable);
+  		
+  		
   		console.log(data);	
   	}
 //  	api returns bad
