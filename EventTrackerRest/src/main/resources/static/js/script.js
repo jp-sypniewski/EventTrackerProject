@@ -96,6 +96,7 @@ var loadDetailView = function(e){
 			var formTaskDueDate = document.createElement('input');
 			formTaskDueDate.setAttribute('type', 'datetime-local');
 			formTaskDueDate.setAttribute('name', 'dueDate');
+			formTaskDueDate.value = data.dueDate;
 			formForEditDelete.appendChild(formTaskDueDate);
 			
 			var aBreak = document.createElement('br');
@@ -228,6 +229,8 @@ var loadAllTasks = function(){
   		
   		var tableBody = document.createElement('tbody');
   		
+  		var statusCount = [0, 0, 0, 0];
+  		
   		for (let i = 0; i < data.length; i++){
   			// create <tr> for each task with <td> for data
   			var tableRow = document.createElement('tr');
@@ -240,6 +243,21 @@ var loadAllTasks = function(){
   			
   			var rowStatus = document.createElement('td');
   			rowStatus.textContent = data[i].status;
+  			if (data[i].status == 'open'){
+  				statusCount[0]++;
+  			}
+  			if (data[i].status == 'in_progress'){
+  				statusCount[1]++;
+  			}
+  			if (data[i].status == 'completed'){
+  				statusCount[2]++;
+  			}
+  			if (data[i].status == 'abandoned'){
+  				statusCount[3]++;
+  			}
+  			
+  			
+  			
   			tableRow.appendChild(rowStatus)
   			
   			var rowDue = document.createElement('td');
@@ -282,19 +300,19 @@ var loadAllTasks = function(){
   		var trackerBodyRow = document.createElement('tr');
   		
   		var trackerBodyOpen = document.createElement('td');
-  		trackerBodyOpen.textContent = "one";
+  		trackerBodyOpen.textContent = statusCount[0];
   		trackerBodyRow.appendChild(trackerBodyOpen);
   		
   		var trackerBodyInProgress = document.createElement('td');
-  		trackerBodyInProgress.textContent = "ten";
+  		trackerBodyInProgress.textContent = statusCount[1];
   		trackerBodyRow.appendChild(trackerBodyInProgress);
   		
   		var trackerBodyCompleted = document.createElement('td');
-  		trackerBodyCompleted.textContent = "eight";
+  		trackerBodyCompleted.textContent = statusCount[2];
   		trackerBodyRow.appendChild(trackerBodyCompleted);
   		
   		var trackerBodyAbandoned = document.createElement('td');
-  		trackerBodyAbandoned.textContent = "zero";
+  		trackerBodyAbandoned.textContent = statusCount[3];
   		trackerBodyRow.appendChild(trackerBodyAbandoned);
   		
   		trackerTableBody.appendChild(trackerBodyRow);
