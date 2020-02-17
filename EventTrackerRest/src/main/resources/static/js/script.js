@@ -104,6 +104,7 @@ var loadDetailView = function(e){
 			
 			var submitChangesButton = document.createElement('button');
 			submitChangesButton.textContent = "Submit changes";
+			submitChangesButton.addEventListener('click', updateTask);
 			formForEditDelete.appendChild(submitChangesButton);
 			
 			var aBreak = document.createElement('br');
@@ -114,15 +115,8 @@ var loadDetailView = function(e){
   			var deleteButton = document.createElement('button');
   			deleteButton.textContent = "Delete " + data.name;
   			deleteButton.addEventListener('click', deleteTask);
-  			formForEditDelete.appendChild(deleteButton);
-  			
-//  		add event listener to run DELETE
-  			
-  			initDiv.appendChild(formForEditDelete);
-
-  			
-  			
-  			
+  			formForEditDelete.appendChild(deleteButton);  			
+  			initDiv.appendChild(formForEditDelete);	
   			
 		}
 		if (xhr.readyState === 4 && xhr.status >= 400) {
@@ -134,6 +128,38 @@ var loadDetailView = function(e){
 
 
 var updateTask = function(e){
+	e.preventDefault();
+	var updateForm = e.target.parentElement;
+	var id = e.target.parentElement.firstElementChild.getAttribute('id');
+	
+	var taskObject = {
+			name: updateForm.name.value,
+			status: updateForm.status.value,
+			dueDate: updateForm.dueDate.value
+		};
+	var taskObjectJson = JSON.stringify(taskObject);
+	
+	
+	
+	
+	var xhr = new XMLHttpRequest();
+	xhr.open('PUT', 'api/teams/1/tasks/' + id, true);
+
+	xhr.setRequestHeader("Content-type", "application/json");
+	
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4 ) {
+			if ( xhr.status == 200 || xhr.status == 201 ) { // Ok or Created
+				loadAllTasks();
+		    }
+		    else {
+		    	console.log("PUT request failed.");
+		    	console.error(xhr.status + ': ' + xhr.responseText);
+		    }
+		}
+	};
+	xhr.send(taskObjectJson);
+	
 	
 };
 
