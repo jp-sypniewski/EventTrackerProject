@@ -4,13 +4,16 @@
 
 #### Overview
 
-This project consists of a JPA Project and custom MySQL database paired with a Spring Boot app to publish a REST API.
+This project consists of a JPA Project and custom MySQL database paired with a Spring Boot app to publish a REST API.  The project contains a single-page application (SPA), written in Javascript, with data accessed via API and XMLHttpRequest.
 
 The database includes tables for tasks, users, and teams.  The main object, a task, has a name, a status (enum), a due date, and a team.  The database also tracks creation and updates of each task object.  A team object has a list of tasks and a list of users.  A user has a team, and the typical username, email, and password.
+
+The Javascript front end displays information about all tasks for team 1.  The count of task completion status is displayed immediately below, followed by a form to add a new task to team 1.  By clicking on a task/row within the initial display table, the detail view of a single task is shown, accompanied by a form to update the task or delete the task.
 
 #### Concepts/Technologies Used
 
 - REST API
+- Javascript XMLHttpRequest, HTML
 - Postman route testing
 - Spring Boot
 - JPA, Spring Data JPA
@@ -43,3 +46,5 @@ http://3.12.14.177:8080/EventTrackerREST/
   - Merely saveAndFlush-ing an object, without first grabbing a managed object, results in the creation of a new row.  This can be useful when both the current and updated object must later be referenced, however an issue with grabbing only the most up-to-date objects arises.  This issue can be averted by turning off a boolean in the current object (and thus initializing the boolean as on during object creation).
 - Project setup is worth the time investment
   - Follow the instructions.  If the instructions are not perfect, update the instructions the first time an issue is found.
+- Importance of HTTP status codes
+  - Checking the status code of an API response allows specific changes to be displayed to the user.  When writing an API, the way the routes are used and checked should be taken into heavy consideration.
