@@ -48,3 +48,11 @@ http://3.12.14.177:8080/EventTrackerREST/
   - Follow the instructions.  If the instructions are not perfect, update the instructions the first time an issue is found.
 - Importance of HTTP status codes
   - Checking the status code of an API response allows specific changes to be displayed to the user.  When writing an API, the way the routes are used and checked should be taken into heavy consideration.
+
+#### Future Updates
+
+- Modify JS front end for greater functionality
+  - Nothing provided for team, user objects
+  - Update task form does not pre-populate status information
+- API Updates
+  - Provide for user objects
