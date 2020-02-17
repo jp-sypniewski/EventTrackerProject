@@ -38,6 +38,11 @@ var loadDetailView = function(e){
   			
 			var formForEditDelete = document.createElement('form');
 			
+			var formTaskId = document.createElement('input');
+			formTaskId.setAttribute('type', 'hidden');
+			formTaskId.setAttribute('id', data.id);
+			formForEditDelete.appendChild(formTaskId);
+			
 			var formLabelTaskName = document.createElement('label');
 			formLabelTaskName.setAttribute('for', 'name');
 			formLabelTaskName.textContent = "Task name: ";
@@ -107,6 +112,7 @@ var loadDetailView = function(e){
 			
   			var deleteButton = document.createElement('button');
   			deleteButton.textContent = "Delete " + data.name;
+  			deleteButton.addEventListener('click', deleteTask);
   			formForEditDelete.appendChild(deleteButton);
   			
 //  		add event listener to run DELETE
@@ -126,7 +132,16 @@ var loadDetailView = function(e){
 };
 
 
+var deleteTask = function(e){
+	e.preventDefault();
+	var id = e.target.parentElement.firstElementChild.getAttribute('id');
+	console.log(e.target);
+	console.log(id);
+	setTimeout(function(){ alert("Hello"); }, 3000);
+	
+	
 
+};
 
 
 var loadAllTasks = function(){
