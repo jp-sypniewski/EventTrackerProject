@@ -29,15 +29,36 @@ var loadDetailView = function(e){
   			
   			var horRule = document.createElement('hr');
   			initDiv.appendChild(horRule);
+  			
+  	  		var tableHeader = document.createElement('h3');
+  	  		tableHeader.textContent = "Update Task \"" + data.name + "\":"
+  	  		initDiv.appendChild(tableHeader);
 
   			
   			
 			var formForEditDelete = document.createElement('form');
 			
+			var formLabelTaskName = document.createElement('label');
+			formLabelTaskName.setAttribute('for', 'name');
+			formLabelTaskName.textContent = "Task name: ";
+			formForEditDelete.appendChild(formLabelTaskName);
+			
 			var formTaskName = document.createElement('input');
 			formTaskName.setAttribute('type', 'text');
 			formTaskName.setAttribute('name', 'name');
 			formForEditDelete.appendChild(formTaskName);
+			
+			var aBreak = document.createElement('br');
+			formForEditDelete.appendChild(aBreak);
+			
+//			select dropdown
+			
+			var formLabelTaskStatus = document.createElement('label');
+			formLabelTaskStatus.setAttribute('for', 'status');
+			formLabelTaskStatus.textContent = "Status: ";
+			formForEditDelete.appendChild(formLabelTaskStatus);
+			
+			
 			var formTaskStatus = document.createElement('select');
 			formTaskStatus.setAttribute('name', 'status');
 			var optionOpen = document.createElement('option');
@@ -56,16 +77,31 @@ var loadDetailView = function(e){
 			optionAbandoned.setAttribute('value', 'abandoned');
 			optionAbandoned.textContent='Abandoned';
 			formTaskStatus.appendChild(optionAbandoned);
-			formForEditDelete.appendChild(formTaskStatus);			
+			formForEditDelete.appendChild(formTaskStatus);
+			
+			var aBreak = document.createElement('br');
+			formForEditDelete.appendChild(aBreak);
+			
+			var formLabelTaskDueDate = document.createElement('label');
+			formLabelTaskDueDate.setAttribute('for', 'dueDate');
+			formLabelTaskDueDate.textContent = "Due date: ";
+			formForEditDelete.appendChild(formLabelTaskDueDate);
+			
 			var formTaskDueDate = document.createElement('input');
 			formTaskDueDate.setAttribute('type', 'datetime-local');
 			formTaskDueDate.setAttribute('name', 'dueDate');
-			formForEditDelete.appendChild(formTaskDueDate);			
+			formForEditDelete.appendChild(formTaskDueDate);
+			
+			var aBreak = document.createElement('br');
+			formForEditDelete.appendChild(aBreak);
 
 			
 			var submitChangesButton = document.createElement('button');
 			submitChangesButton.textContent = "Submit changes";
 			formForEditDelete.appendChild(submitChangesButton);
+			
+			var aBreak = document.createElement('br');
+			formForEditDelete.appendChild(aBreak);
 			
 //			add event listener to run PUT
 			
@@ -89,6 +125,10 @@ var loadDetailView = function(e){
 	xhr.send(null);
 };
 
+
+
+
+
 var loadAllTasks = function(){
 	var initDiv = document.getElementById('init');
 	while (initDiv.firstElementChild){
@@ -103,6 +143,10 @@ var loadAllTasks = function(){
   	if (xhr.readyState === 4 && xhr.status < 400) {
   		var data = JSON.parse(xhr.responseText);
   		// get dedicated <div> for tasks
+  		
+  		var tableHeader = document.createElement('h3');
+  		tableHeader.textContent = "All Tasks:"
+  		initDiv.appendChild(tableHeader);
 
   		var table = document.createElement('table');
   		var tableHead = document.createElement('thead');
@@ -164,6 +208,8 @@ var loadAllTasks = function(){
 
 
 window.addEventListener('load', loadAllTasks);
+
+// load event listener for form.
 
 document.taskForm.submit.addEventListener('click', function(e){
 	e.preventDefault();
