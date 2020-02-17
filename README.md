@@ -53,6 +53,5 @@ http://3.12.14.177:8080/EventTrackerREST/
 
 - Modify JS front end for greater functionality
   - Nothing provided for team, user objects
-  - Update task form does not pre-populate status information
 - API Updates
   - Provide for user objects
