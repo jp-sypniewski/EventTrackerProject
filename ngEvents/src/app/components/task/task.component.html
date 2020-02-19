@@ -1,1 +1,21 @@
-<p>task works!</p>
+
+<!-- display all -->
+<div *ngIf="selected == null">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>TASK</th>
+        <th>STATUS</th>
+        <th>DUE DATE</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of tasks">
+        <td (click)="selected = task;">{{task.name}}</td>
+        <td>{{task.status}}</td>
+        <td>{{ task.dueDate}}</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
