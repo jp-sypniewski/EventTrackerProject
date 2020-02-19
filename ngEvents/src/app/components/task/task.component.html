@@ -12,10 +12,49 @@
     </thead>
     <tbody>
       <tr *ngFor="let task of tasks">
-        <td (click)="selected = task;">{{task.name}}</td>
-        <td>{{task.status}}</td>
+        <td (click)="selected = task;">{{ task.name }}</td>
+        <td>{{ task.status }}</td>
         <td>{{ task.dueDate}}</td>
       </tr>
     </tbody>
   </table>
+
+  <form class="form form-inline">
+    <input type="text" name="task" placeholder="Task name" [(ngModel)]="newTask.name"/>
+    <input type="datetime-local" name="dueDate" [(ngModel)]="newTask.dueDate"/>
+    <button class="btn btn-success" type="button" (click)="onSubmitNew()">Add task</button>
+  </form>
+
+
   </div>
+
+  <!-- detail view -->
+<div *ngIf="selected != null && editTask == null">
+  <h4><span>ID:</span>{{ selected.id }}</h4>
+  <h4><span>Task name:</span>{{ selected.name }}</h4>
+  <h4><span>Status:</span>{{ selected.status }}</h4>
+  <h4><span>Due date:</span>{{ selected.dueDate }}</h4>
+  <h4><span>Created:</span>{{ selected.createdAt }}</h4>
+  <button type="button" (click)="editTask = selected;">Edit</button>
+  <button type="button" (click)="selected = null;">Show all</button>
+</div>
+
+<!-- edit from detail view -->
+<div *ngIf="editTask != null">
+  <form>
+   <input type="hidden" id="1">
+   <label for="name">Task name: </label>
+   <input type="text" name="name" value="{{editTask.name}}"><br>
+   <label for="status">Status: </label>
+   <select name="status">
+      <option value="open">Open</option>
+      <option value="in_progress">In Progress</option>
+      <option value="completed">Completed</option>
+      <option value="abandoned">Abandoned</option>
+    </select><br>
+    <label for="dueDate">Due date: </label>
+    <input type="datetime-local" name="dueDate" value="{{editTask.dueDate}}"><br>
+    <button type="button" (click)="onSubmitEdit();">Submit changes</button><br>
+    <button type="button" (click)="deleteTodo(editTask.id);">Delete homework</button>
+  </form>
+</div>
